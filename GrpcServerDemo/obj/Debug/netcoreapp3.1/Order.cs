@@ -25,20 +25,20 @@ namespace GrpcServerDemo {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChJQcm90b3Mvb3JkZXIucHJvdG8SBW9yZGVyIh8KDE9yZGVyUmVxdWVzdBIP",
-            "CgdvcmRlck5vGAEgASgJIrIBCg1PcmRlclJlc3BvbnNlEg8KB29yZGVyTm8Y",
+            "CgdvcmRlck5vGAEgASgJIsEBCg1PcmRlclJlc3BvbnNlEg8KB29yZGVyTm8Y",
             "ASABKAkSDgoGYW1vbnV0GAIgASgBEjEKCW9yZGVyVHlwZRgDIAEoDjIeLm9y",
-            "ZGVyLk9yZGVyUmVzcG9uc2UuT3JkZXJUeXBlEhIKCmNyZWF0ZVRpbWUYBCAB",
-            "KAMSHwoFaXRlbXMYBSADKAsyEC5vcmRlci5PcmRlckl0ZW0iGAoJT3JkZXJU",
-            "eXBlEgsKB1VOS05PV04QACJLCglPcmRlckl0ZW0SDwoHZ29vZHNTbhgBIAEo",
-            "CRIRCglnb29kc05hbWUYAiABKAkSCwoDcXR5GAMgASgFEg0KBXByaWNlGAQg",
-            "ASgBMj4KBU9yZGVyEjUKCEdldE9yZGVyEhMub3JkZXIuT3JkZXJSZXF1ZXN0",
-            "GhQub3JkZXIuT3JkZXJSZXNwb25zZUIRqgIOR3JwY1NlcnZlckRlbW9iBnBy",
-            "b3RvMw=="));
+            "ZGVyLk9yZGVyUmVzcG9uc2UuT3JkZXJUeXBlEg0KBUJ1eWVyGAQgASgJEhIK",
+            "CmNyZWF0ZVRpbWUYBSABKAMSHwoFaXRlbXMYBiADKAsyEC5vcmRlci5PcmRl",
+            "ckl0ZW0iGAoJT3JkZXJUeXBlEgsKB1VOS05PV04QACJLCglPcmRlckl0ZW0S",
+            "DwoHZ29vZHNTbhgBIAEoCRIRCglnb29kc05hbWUYAiABKAkSCwoDcXR5GAMg",
+            "ASgFEg0KBXByaWNlGAQgASgBMj4KBU9yZGVyEjUKCEdldE9yZGVyEhMub3Jk",
+            "ZXIuT3JkZXJSZXF1ZXN0GhQub3JkZXIuT3JkZXJSZXNwb25zZUIRqgIOR3Jw",
+            "Y1NlcnZlckRlbW9iBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::GrpcServerDemo.OrderRequest), global::GrpcServerDemo.OrderRequest.Parser, new[]{ "OrderNo" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GrpcServerDemo.OrderResponse), global::GrpcServerDemo.OrderResponse.Parser, new[]{ "OrderNo", "Amonut", "OrderType", "CreateTime", "Items" }, null, new[]{ typeof(global::GrpcServerDemo.OrderResponse.Types.OrderType) }, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GrpcServerDemo.OrderResponse), global::GrpcServerDemo.OrderResponse.Parser, new[]{ "OrderNo", "Amonut", "OrderType", "Buyer", "CreateTime", "Items" }, null, new[]{ typeof(global::GrpcServerDemo.OrderResponse.Types.OrderType) }, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GrpcServerDemo.OrderItem), global::GrpcServerDemo.OrderItem.Parser, new[]{ "GoodsSn", "GoodsName", "Qty", "Price" }, null, null, null)
           }));
     }
@@ -203,6 +203,7 @@ namespace GrpcServerDemo {
       orderNo_ = other.orderNo_;
       amonut_ = other.amonut_;
       orderType_ = other.orderType_;
+      buyer_ = other.buyer_;
       createTime_ = other.createTime_;
       items_ = other.items_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -246,8 +247,19 @@ namespace GrpcServerDemo {
       }
     }
 
+    /// <summary>Field number for the "Buyer" field.</summary>
+    public const int BuyerFieldNumber = 4;
+    private string buyer_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Buyer {
+      get { return buyer_; }
+      set {
+        buyer_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "createTime" field.</summary>
-    public const int CreateTimeFieldNumber = 4;
+    public const int CreateTimeFieldNumber = 5;
     private long createTime_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long CreateTime {
@@ -258,9 +270,9 @@ namespace GrpcServerDemo {
     }
 
     /// <summary>Field number for the "items" field.</summary>
-    public const int ItemsFieldNumber = 5;
+    public const int ItemsFieldNumber = 6;
     private static readonly pb::FieldCodec<global::GrpcServerDemo.OrderItem> _repeated_items_codec
-        = pb::FieldCodec.ForMessage(42, global::GrpcServerDemo.OrderItem.Parser);
+        = pb::FieldCodec.ForMessage(50, global::GrpcServerDemo.OrderItem.Parser);
     private readonly pbc::RepeatedField<global::GrpcServerDemo.OrderItem> items_ = new pbc::RepeatedField<global::GrpcServerDemo.OrderItem>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::GrpcServerDemo.OrderItem> Items {
@@ -283,6 +295,7 @@ namespace GrpcServerDemo {
       if (OrderNo != other.OrderNo) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Amonut, other.Amonut)) return false;
       if (OrderType != other.OrderType) return false;
+      if (Buyer != other.Buyer) return false;
       if (CreateTime != other.CreateTime) return false;
       if(!items_.Equals(other.items_)) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -294,6 +307,7 @@ namespace GrpcServerDemo {
       if (OrderNo.Length != 0) hash ^= OrderNo.GetHashCode();
       if (Amonut != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Amonut);
       if (OrderType != 0) hash ^= OrderType.GetHashCode();
+      if (Buyer.Length != 0) hash ^= Buyer.GetHashCode();
       if (CreateTime != 0L) hash ^= CreateTime.GetHashCode();
       hash ^= items_.GetHashCode();
       if (_unknownFields != null) {
@@ -321,8 +335,12 @@ namespace GrpcServerDemo {
         output.WriteRawTag(24);
         output.WriteEnum((int) OrderType);
       }
+      if (Buyer.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Buyer);
+      }
       if (CreateTime != 0L) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(40);
         output.WriteInt64(CreateTime);
       }
       items_.WriteTo(output, _repeated_items_codec);
@@ -342,6 +360,9 @@ namespace GrpcServerDemo {
       }
       if (OrderType != 0) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) OrderType);
+      }
+      if (Buyer.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Buyer);
       }
       if (CreateTime != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(CreateTime);
@@ -366,6 +387,9 @@ namespace GrpcServerDemo {
       }
       if (other.OrderType != 0) {
         OrderType = other.OrderType;
+      }
+      if (other.Buyer.Length != 0) {
+        Buyer = other.Buyer;
       }
       if (other.CreateTime != 0L) {
         CreateTime = other.CreateTime;
@@ -394,11 +418,15 @@ namespace GrpcServerDemo {
             OrderType = (global::GrpcServerDemo.OrderResponse.Types.OrderType) input.ReadEnum();
             break;
           }
-          case 32: {
+          case 34: {
+            Buyer = input.ReadString();
+            break;
+          }
+          case 40: {
             CreateTime = input.ReadInt64();
             break;
           }
-          case 42: {
+          case 50: {
             items_.AddEntriesFrom(input, _repeated_items_codec);
             break;
           }
